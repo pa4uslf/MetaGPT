@@ -127,11 +127,31 @@ def startup(
 DEFAULT_CONFIG = """# Full Example: https://github.com/geekan/MetaGPT/blob/main/config/config2.example.yaml
 # Reflected Code: https://github.com/geekan/MetaGPT/blob/main/metagpt/config2.py
 # Config Docs: https://docs.deepwisdom.ai/main/en/guide/get_started/configuration.html
+#
+# This default config is pre-filled with the auto-detectable settings on the current machine.
+# You still need to replace llm.api_key with your own credential before running MetaGPT.
 llm:
-  api_type: "openai"  # or azure / ollama / groq etc.
-  model: "gpt-4-turbo"  # or gpt-3.5-turbo
-  base_url: "https://api.openai.com/v1"  # or forward url / other llm url
+  api_type: "openai"  # or azure / ollama / groq / gemini / claude etc.
+  model: "gpt-4-turbo"
+  base_url: "https://api.openai.com/v1"
   api_key: "YOUR_API_KEY"
+  timeout: 600
+  temperature: 0.0
+
+repair_llm_output: true
+
+search:
+  api_type: "ddg"
+
+browser:
+  engine: "playwright"
+  browser_type: "chromium"
+
+mermaid:
+  engine: "nodejs"
+  path: "/opt/homebrew/bin/mmdc"
+
+# proxy: "http://127.0.0.1:7890"
 """
 
 

@@ -1,8 +1,32 @@
 # Full Example: https://github.com/geekan/MetaGPT/blob/main/config/config2.example.yaml
 # Reflected Code: https://github.com/geekan/MetaGPT/blob/main/metagpt/config2.py
 # Config Docs: https://docs.deepwisdom.ai/main/en/guide/get_started/configuration.html
+#
+# 这份默认配置已经按当前机器环境补齐了可自动确定的部分：
+# - Mermaid 走本机已安装的 mmdc
+# - 浏览器走 Playwright + Chromium
+# - 搜索默认走 DuckDuckGo，避免额外申请搜索 API
+# 你只需要把 llm.api_key 改成你自己的 Key；如需换供应商，可改 llm.api_type / base_url / model。
 llm:
-  api_type: "openai"  # or azure / ollama / groq etc.
-  model: "gpt-4-turbo"  # or gpt-3.5-turbo
-  base_url: "https://api.openai.com/v1"  # or forward url / other llm url
+  api_type: "openai"  # 可改成 azure / ollama / groq / gemini / claude 等
+  model: "gpt-4-turbo"
+  base_url: "https://api.openai.com/v1"
   api_key: "YOUR_API_KEY"
+  timeout: 600
+  temperature: 0.0
+
+repair_llm_output: true
+
+search:
+  api_type: "ddg"
+
+browser:
+  engine: "playwright"
+  browser_type: "chromium"
+
+mermaid:
+  engine: "nodejs"
+  path: "/opt/homebrew/bin/mmdc"
+
+# 如需全局代理，取消注释并填入你自己的代理地址
+# proxy: "http://127.0.0.1:7890"
